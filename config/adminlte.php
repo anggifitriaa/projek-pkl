@@ -247,18 +247,24 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'buku',
-            'url' => 'admin/buku',
+            'text' => 'karyawan',
+            'url' => 'admin/karyawan',
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => 'pengarang',
-            'url' => 'admin/pengarang',
+            'text' => 'pembeli',
+            'url' => 'admin/pembeli',
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => 'menu lainnya',
-            'url' => '#',
+            'text' => 'penjualan',
+            'url' => 'admin/penjualan',
+            'icon' => 'far fa-fw fa-file',
+
+        ],
+        [
+            'text' => 'menu',
+            'url' => 'admin/menu',
             'icon' => 'far fa-fw fa-file',
         ],
     ],

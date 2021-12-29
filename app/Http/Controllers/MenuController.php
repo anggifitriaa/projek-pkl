@@ -14,7 +14,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menu = menu::all();
+        return view('menu.index', compact('menu'));
+
     }
 
     /**
@@ -24,7 +26,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('menu.create');
     }
 
     /**
@@ -35,7 +37,15 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_menu' => 'required',
+            'harga' => 'required',
+            'stock' => 'required',
+        ]);
+        $menu->nama_menu = $request->nama_menu;
+        $menu->harga = $request->harga;
+        $menu->stock = $request->stock;
+
     }
 
     /**
@@ -44,9 +54,11 @@ class MenuController extends Controller
      * @param  \App\Models\menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function show(menu $menu)
+    public function show($id)
     {
-        //
+        $menu = menu::findOrFail($id);
+        return view('layouts.menu.show', compact('menu'));
+
     }
 
     /**
@@ -55,9 +67,11 @@ class MenuController extends Controller
      * @param  \App\Models\menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(menu $menu)
+    public function edit($id)
     {
-        //
+        $menu = menu::all();
+        return view('layouts.menu.edit', compact('menu'));
+
     }
 
     /**
@@ -69,7 +83,15 @@ class MenuController extends Controller
      */
     public function update(Request $request, menu $menu)
     {
-        //
+        $validated = $request->validate([
+            'nama_menu' => 'required',
+            'harga' => 'required',
+            'stock' => 'required',
+        ]);
+        $menu->nama_menu = $request->nama_menu;
+        $menu->harga = $request->harga;
+        $menu->stock = $request->stock;
+
     }
 
     /**
@@ -80,6 +102,9 @@ class MenuController extends Controller
      */
     public function destroy(menu $menu)
     {
-        //
+        $menu = menu::findOrFail($id);
+        $menu->delete();
+        return redirect()->route('delete.index');
+
     }
 }

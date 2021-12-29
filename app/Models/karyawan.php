@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class karyawan extends Model
 {
     use HasFactory;
-    protected $table = "karyawan";
 
     protected $fillable = ['id', 'nama_karyawan'];
     protected $visible = ['id', 'nama_karyawan'];
@@ -17,6 +16,6 @@ class karyawan extends Model
 
     public function penjualan()
     {
-        return $this->hasMany('App\models\karyawan');
+        return $this->hasMany('App\Models\karyawan');
     }
 }

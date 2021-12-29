@@ -16,8 +16,20 @@ class penjualan extends Model
 
     public $timestamps = true;
 
-    public function penjualan()
+    public function pembeli()
     {
-        return $this->hasMany('App\models\pembeli');
+        return $this->hasMany('App\models\pembeli', 'id_pembeli');
+    }
+
+    public function karyawan()
+    {
+        return $this->hasMany('App\models\pembeli', 'id_karyawan');
+
+    }
+
+    public function menu()
+    {
+        return $this->hasMany('App\models\pembeli', 'id_menu');
+
     }
 }

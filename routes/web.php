@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,5 +69,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('pengarang', function () {
         return view('pengarang.index');
     })->middleware(['role:admin']);
+
+    Route::resource('karyawan', KaryawanController::class)->middleware(['role:admin']);
 
 });
