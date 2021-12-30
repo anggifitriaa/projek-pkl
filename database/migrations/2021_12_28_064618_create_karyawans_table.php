@@ -15,6 +15,7 @@ class CreateKaryawansTable extends Migration
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_karyawan');
             $table->string('nama_karyawan');
             $table->timestamps();
         });

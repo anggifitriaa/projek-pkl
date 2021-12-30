@@ -14,7 +14,9 @@ class PembeliController extends Controller
      */
     public function index()
     {
-        //
+        $pembeli = pembeli::all();
+        return view('pembeli.index', compact('pembeli'));
+
     }
 
     /**
@@ -24,7 +26,8 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        //
+        return view('pembeli.create');
+
     }
 
     /**
@@ -35,7 +38,11 @@ class PembeliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_pembeli' => 'required',
+        ]);
+        $pembeli->nama_pembeli = $request->nama_pembeli;
+
     }
 
     /**
@@ -44,9 +51,11 @@ class PembeliController extends Controller
      * @param  \App\Models\pembeli  $pembeli
      * @return \Illuminate\Http\Response
      */
-    public function show(pembeli $pembeli)
+    public function show($id)
     {
-        //
+        $pembeli = pembeli::findOrFail($id);
+        return view('pembeli.show', compact('pembeli'));
+
     }
 
     /**
@@ -55,9 +64,11 @@ class PembeliController extends Controller
      * @param  \App\Models\pembeli  $pembeli
      * @return \Illuminate\Http\Response
      */
-    public function edit(pembeli $pembeli)
+    public function edit($id)
     {
-        //
+        $pembeli = pembeli::all();
+        return view('pembeli.edit', compact('pembeli'));
+
     }
 
     /**
@@ -67,9 +78,16 @@ class PembeliController extends Controller
      * @param  \App\Models\pembeli  $pembeli
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pembeli $pembeli)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            // 'id_pembeli' => 'required',
+            'nama_pembeli' => 'required',
+
+        ]);
+        //$pembeli->id_pembeli = $request->id_pembeli;
+        $pembeli->nama_pembeli = $request->nama_pembeli;
+
     }
 
     /**
@@ -78,8 +96,11 @@ class PembeliController extends Controller
      * @param  \App\Models\pembeli  $pembeli
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pembeli $pembeli)
+    public function destroy($id)
     {
-        //
+        $pembeli = pembeli::findOrFail($id);
+        $pembeli->delete();
+        return redirect()->route('pembeli.index');
+
     }
 }

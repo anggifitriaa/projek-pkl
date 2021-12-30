@@ -57,7 +57,7 @@ class MenuController extends Controller
     public function show($id)
     {
         $menu = menu::findOrFail($id);
-        return view('layouts.menu.show', compact('menu'));
+        return view('menu.show', compact('menu'));
 
     }
 
@@ -70,7 +70,7 @@ class MenuController extends Controller
     public function edit($id)
     {
         $menu = menu::all();
-        return view('layouts.menu.edit', compact('menu'));
+        return view('menu.edit', compact('menu'));
 
     }
 

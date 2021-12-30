@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\PenjualanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,5 +74,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     })->middleware(['role:admin']);
 
     Route::resource('karyawan', KaryawanController::class)->middleware(['role:admin']);
+    Route::resource('menu', MenuController::class)->middleware(['role:admin']);
+    Route::resource('pembeli', PembeliController::class)->middleware(['role:admin']);
+    Route::resource('penjualan', PenjualanController::class)->middleware(['role:admin']);
 
 });

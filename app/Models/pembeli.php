@@ -9,7 +9,7 @@ class pembeli extends Model
 {
     use HasFactory;
 
-    protected $table = "pembeli";
+    protected $table = "pembelis";
 
     protected $fillable = ['id', 'nama_pembeli'];
     protected $visible = ['id', 'nama_pembeli'];

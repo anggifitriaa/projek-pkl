@@ -54,7 +54,7 @@ class KaryawanController extends Controller
     public function show($id)
     {
         $karyawan = karyawan::findOrFail($id);
-        return view('layouts.karyawan.show', compact('karyawan'));
+        return view('karyawan.show', compact('karyawan'));
 
     }
 
@@ -66,8 +66,8 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        $karyawan = karyawan::all();
-        return view('layouts.karyawan.edit', compact('karyawan'));
+        $karyawan = karyawan::findOrFail($id);
+        return view('karyawan.edit', compact('karyawan'));
 
     }
 
@@ -78,12 +78,18 @@ class KaryawanController extends Controller
      * @param  \App\Models\karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, karyawan $karyawan)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'id_karyawan' => 'required',
             'nama_karyawan' => 'required',
+
         ]);
+        $karyawan = karyawan::findOrFail($id);
+        $karyawan->id_karyawan = $request->id_karyawan;
         $karyawan->nama_karyawan = $request->nama_karyawan;
+        $karyawan->save();
+        return redirect()->route('karyawan.index');
 
     }
 
