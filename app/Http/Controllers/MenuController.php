@@ -37,14 +37,18 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama_menu' => 'required',
-            'harga' => 'required',
-            'stock' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'id_menu' => 'required',
+        //     'nama_menu' => 'required',
+        //     'harga' => 'required',
+        //     'stock' => 'required',
+        // ]);
+        $menu = new Menu;
         $menu->nama_menu = $request->nama_menu;
         $menu->harga = $request->harga;
         $menu->stock = $request->stock;
+        $menu->save();
+        return redirect()->route('menu.index');
 
     }
 
@@ -100,11 +104,11 @@ class MenuController extends Controller
      * @param  \App\Models\menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(menu $menu)
+    public function destroy($id)
     {
         $menu = menu::findOrFail($id);
         $menu->delete();
-        return redirect()->route('delete.index');
+        return redirect()->route('menu.index');
 
     }
 }

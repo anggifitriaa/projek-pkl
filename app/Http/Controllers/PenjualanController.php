@@ -14,7 +14,8 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $penjualan = Penjualan::all();
+        $penjualan = penjualan::all();
+
         return view('penjualan.index', compact('penjualan'));
 
     }

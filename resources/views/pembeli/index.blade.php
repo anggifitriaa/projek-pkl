@@ -17,35 +17,32 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Data Karyawan
-                    <a href="{{ route('karyawan.create') }}" class="btn btn-sm btn-outline-primary float-right">Tambah
-                        Karyawan</a>
+                    Data Pembeli
+                    <a href="{{ route('pembeli.create') }}" class="btn btn-sm btn-outline-primary float-right">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <tr>
-                            <th>No</th>
-                                <th>Id karyawan</th>
-                                <th>Nama karyawan</th>
+                                <th>No</th>
+                                <th>Nama pembeli</th>
                                 <th>Aksi</th>
                             </tr>
                             @php $no=1; @endphp
-                            @foreach ($karyawan as $data)
+                            @foreach ($pembeli as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->id_karyawan }}</td>
-                                <td>{{ $data->nama_karyawan }}</td>
+                                <td>{{ $data->nama_pembeli }}</td>
                                 <td>
-                                    <form action="{{route('karyawan.destroy', $data->id)}}" method="post">
-                                        @csrf
+                                    <form action="{{ route('pembeli.destroy', $data->id) }}" method="post">
                                         @method('DELETE')
-                                        <a href="{{ route('karyawan.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
-                                        <a href="{{ route('karyawan.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
+                                        @csrf
+                                        <a href="{{ route('pembeli.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
+                                        <a href="{{ route('pembeli.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin menghapus ini?');">Delete</button>
-                                    </td>
-                            </tr>
                                     </form>
+                                </td>
+                            </tr>
                             @endforeach
                         </table>
                     </div>
@@ -55,3 +52,4 @@
     </div>
 </div>
 @endsection
+

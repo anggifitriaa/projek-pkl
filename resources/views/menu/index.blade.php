@@ -34,18 +34,19 @@
                             @foreach ($menu as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->id_menu }}</td>
                                 <td>{{ $data->nama_menu }}</td>
                                 <td>{{ $data->harga }}</td>
                                 <td>{{ $data->stock }}</td>
 
 
                                 <td>
-                                    <form action="{{ route('menu.destroy', $data->id) }}" method="post">
-                                        @method('delete')
-                                        @csrf
+
                                         <a href="{{ route('menu.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
                                         <a href="{{ route('menu.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
+                                         <form action="{{ route('menu.destroy', $data->id) }}" method="post">
+                                         @method('DELETE')
+                                         @csrf
+                                         <input type="hidden" name="id" value="{{$data->id}}">
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin menghapus ini?');">Delete</button>
                                     </form>
                                 </td>

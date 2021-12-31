@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-12">
-                <h1 class="m-0">Data Karyawan</h1>
+                <h1 class="m-0">Penjualan</h1>
             </div>
         </div>
     </div>
@@ -17,30 +17,39 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Data Pembeli
-                    <a href="{{ route('pembeli.create') }}" class="btn btn-sm btn-outline-primary float-right"></a>
+                    Penjualan
+                    <a href="{{ route('penjualan.create') }}" class="btn btn-sm btn-outline-primary float-right">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <tr>
-                                <th>No</th>
-                                <th>Id pembeli</th>
-                                <th>Nama pembeli</th>
+                                <th>No Meja</th>
+                                <th>Tanggal Pemesanan</th>
+                                <th>Jumlah Menu</th>
+                                 <th>Total</th>
+                                  <th>Id_Pembeli</th>
+                                   <th>Id_karyawan</th>
+                                    <th>Id_Menu</th>
                                 <th>Aksi</th>
                             </tr>
                             @php $no=1; @endphp
-                            @foreach ($pembeli as $data)
+                            @foreach ($penjualan as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-
-                                <td>{{ $data->nama_pembeli }}</td>
+                                <td>{{ $data->no_meja }}</td>
+                                <td>{{ $data->tgl_penjualan }}</td>
+                                <td>{{ $data->jumlah_nemu }}</td>
+                                <td>{{ $data->total }}</td>
+                                <td>{{ $data->id_pembeli }}</td>
+                                <td>{{ $data->id_karyawan }}</td>
+                                <td>{{ $data->id_menu }}</td>
                                 <td>
-                                    <form action="{{ route('pembeli.destroy', $data->id) }}" method="post">
+                                    <form action="{{ route('penjualan.destroy', $data->id) }}" method="post">
                                         @method('delete')
                                         @csrf
-                                        <a href="{{ route('pembeli.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
-                                        <a href="{{ route('pembeli.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
+                                        <a href="{{ route('penjualan.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
+                                        <a href="{{ route('penjualan.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin menghapus ini?');">Delete</button>
                                     </form>
                                 </td>

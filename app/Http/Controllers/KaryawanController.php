@@ -99,11 +99,10 @@ class KaryawanController extends Controller
      * @param  \App\Models\karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(karyawan $karyawan)
+    public function destroy($id)
     {
-        $karyawan = Karyawan::findOrFail($id);
+        $karyawan = karyawan::findOrFail($id);
         $karyawan->delete();
-        return redirect()->route('delete.index');
-
+        return redirect()->route('karyawan.index');
     }
 }
